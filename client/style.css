@@ -12,7 +12,7 @@ body {
 }
 
 .outer {
-  margin: 0 auto;
+  margin: 2em auto;
   max-width: 480px;
 }
 

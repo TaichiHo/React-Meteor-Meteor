@@ -13,6 +13,14 @@ const {
 //    </Route>
 //);
 
+
+router = (
+    <Router history={ReactRouterHistory}>
+        <Route path="/" component={App}>
+            <Route path="login" component={Signin}/>
+        </Route>
+    </Router>
+);
 Meteor.startup(function () {
     injectTapEventPlugin();
     //router.run(function (Handler, state) {
@@ -22,13 +30,8 @@ Meteor.startup(function () {
 
     // Finally we render a `Router` component with some `Route`s, it'll do all
     // the fancy routing stuff for us.
-    React.render((
-        <Router history={ReactRouterHistory}>
-            <Route path="/" component={App}>
-                <Route path="login" component={Signin}/>
-            </Route>
-        </Router>
-    ), document.body);
+
+    React.render(router, document.body);
 });
 
 //<Route path="join" component={Inbox}/>

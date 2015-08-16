@@ -2,6 +2,7 @@ const {
     RaisedButton, AppBar, IconButton, FlatButton, FontIcon
     } = mui;
 
+
 const ThemeManager = new mui.Styles.ThemeManager();
 
 App = React.createClass({
@@ -22,7 +23,8 @@ App = React.createClass({
     getMeteorData() {
         return {
             players: Players.find({}, {sort: {score: -1, name: 1}}).fetch(),
-            selectedPlayer: Players.findOne(this.state.selectedPlayerId)
+            selectedPlayer: Players.findOne(this.state.selectedPlayerId),
+            currentUser: Meteor.user()
         }
     },
     selectPlayer(playerId) {
@@ -50,14 +52,14 @@ App = React.createClass({
         } else {
             bottomBar = <div className="message">Click a player to select</div>;
         }
-        var appbar = <AppBar />;
+
         // <IconButton iconClassName="material-icons">clear</IconButton>
         return (
             <div>
-                <AppBar
-                    title="Edwo"
+                <TitleBar />
 
-                    iconElementRight={<FlatButton label="Save" />}/>
+                {this.props.children}
+
 
                 <div className="outer">
                     <div className="logo"></div>
@@ -68,8 +70,6 @@ App = React.createClass({
                                  selectedPlayerId={this.state.selectedPlayerId}
                                  onPlayerSelected={this.selectPlayer}/>
                     { bottomBar }
-
-                    {this.props.children}
                 </div>
             </div>
         )
