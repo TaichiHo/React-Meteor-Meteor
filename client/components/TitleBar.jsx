@@ -39,8 +39,11 @@ TitleBar = React.createClass({
     _handleIconMenuChange(e, value) {
         "use strict";
         this.setState({
-            iconMenuValue: value
+            iconMenuValue: 0
         });
+        if (value == "signout") {
+            AccountsTemplates.logout();
+        }
     },
     render() {
         "use strict";
@@ -64,10 +67,10 @@ TitleBar = React.createClass({
                           onChange={this._handleIconMenuChange}
                           value={this.state.iconMenuValue}
                           openDirection="bottom-left">
-                    <MenuItem value="0" primaryText="Profile"/>
-                    <MenuItem value="1" primaryText="Settings"/>
-                    <MenuItem value="2" primaryText="Help"/>
-                    <MenuItem value="3" primaryText="Sign Out"/>
+                    <MenuItem value="profile" primaryText="Profile"/>
+                    <MenuItem value="settings" primaryText="Settings"/>
+                    <MenuItem value="help" primaryText="Help"/>
+                    <MenuItem value="signout" primaryText="Sign Out"/>
                 </IconMenu>
                 //<IconMenu iconButtonElement={avatarIcon}
                 //          onChange={this._handleIconMenuChange}
@@ -84,8 +87,9 @@ TitleBar = React.createClass({
 
         return (
             <div>
-                <AppBar title=" Edward" iconElementRight=
-                    {itemOnRight}>
+                <AppBar title="Edward" iconElementRight={itemOnRight}
+                        onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
+                        style={{position: 'absolute', top: 0}}>
 
                 </AppBar>
             </div>
@@ -99,23 +103,4 @@ TitleBar = React.createClass({
 //    <li disabled className=" mdl-menu__item">Disabled Action</li>
 //    <li className=" mdl-menu__item">Yet Another Action</li>
 //</ul>
-var mySubmitFunc = function (error, state) {
 
-    if (!error) {
-        if (state === " signIn") {
-            // Successfully logged in
-            // ...
-            console.log(router);
-            router.transitionTo('/');
-        }
-        if (state === " signUp") {
-            // Successfully registered
-            // ...
-            router.transitionTo('/');
-        }
-    }
-};
-
-AccountsTemplates.configure({
-    onSubmitHook: mySubmitFunc
-});

@@ -1,6 +1,8 @@
 const {
-    RaisedButton, AppBar, IconButton, FlatButton, FontIcon
+    RaisedButton, AppBar, IconButton, FlatButton, FontIcon, AppCanvas, Styles,
     } = mui;
+
+let { Colors, Spacing, Typography } = Styles;
 
 
 const ThemeManager = new mui.Styles.ThemeManager();
@@ -36,6 +38,7 @@ App = React.createClass({
         Players.update(playerId, {$inc: {score: 5}});
     },
     render() {
+        let styles = this.getStyles();
         let bottomBar;
         if (this.state.selectedPlayerId) {
             bottomBar = (
@@ -55,23 +58,63 @@ App = React.createClass({
 
         // <IconButton iconClassName="material-icons">clear</IconButton>
         return (
-            <div>
-                <TitleBar />
 
+            <AppCanvas>
+                <TitleBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}/>
                 {this.props.children}
+                <AppLeftNav ref="leftNav"/>
+                <FullWidthSection style={styles.footer}>
+                    <p style={styles.p}>
+                        Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a>
+                        and our
+                        awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+                    </p>
+                </FullWidthSection>
+            </AppCanvas>
+        );
 
 
-                <div className="outer">
-                    <div className="logo"></div>
-                    <h1 className="title">Leaderboard</h1>
+//            <div className="outer">
+//        <div className="logo"></div>
+//        <h1 className="title">Leaderboard</h1>
+//
+//        <div className="subtitle">Select a scientist to give them points</div>
+//        <Leaderboard players={this.data.players}
+//selectedPlayerId={this.state.selectedPlayerId}
+//onPlayerSelected={this.selectPlayer}/>
+//{ bottomBar }
+//</div>
+    },
 
-                    <div className="subtitle">Select a scientist to give them points</div>
-                    <Leaderboard players={this.data.players}
-                                 selectedPlayerId={this.state.selectedPlayerId}
-                                 onPlayerSelected={this.selectPlayer}/>
-                    { bottomBar }
-                </div>
-            </div>
-        )
+    _onLeftIconButtonTouchTap() {
+        this.refs.leftNav.toggle();
+    },
+    getStyles() {
+        let darkWhite = Colors.darkWhite;
+        return {
+            footer: {
+                backgroundColor: Colors.grey900,
+                textAlign: 'center'
+            },
+            a: {
+                color: darkWhite
+            },
+            p: {
+                margin: '0 auto',
+                padding: 0,
+                color: Colors.lightWhite,
+                maxWidth: 335
+            },
+            github: {
+                position: 'fixed',
+                right: Spacing.desktopGutter / 2,
+                top: 8,
+                zIndex: 5,
+                color: 'white'
+            },
+            iconButton: {
+                color: darkWhite
+            },
+        };
     }
 });
