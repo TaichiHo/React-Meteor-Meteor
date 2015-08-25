@@ -5,15 +5,6 @@ Customization = React.createClass({
             {route: '/customization/themes', text: 'Themes'},
             {route: '/customization/inline-styles', text: 'Inline Styles'},
             {route: '/customization/colors', text: 'Colors'},
-            {route: '/customization/themes', text: 'Themes'},
-            {route: '/customization/inline-styles', text: 'Inline Styles'},
-            {route: '/customization/colors', text: 'Colors'},
-            {route: '/customization/themes', text: 'Themes'},
-            {route: '/customization/inline-styles', text: 'Inline Styles'},
-            {route: '/customization/colors', text: 'Colors'},
-            {route: '/customization/themes', text: 'Themes'},
-            {route: '/customization/inline-styles', text: 'Inline Styles'},
-            {route: '/customization/colors', text: 'Colors'}
         ];
 
         return (

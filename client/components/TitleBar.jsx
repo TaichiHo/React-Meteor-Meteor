@@ -89,7 +89,7 @@ TitleBar = React.createClass({
             <div>
                 <AppBar title="Edward" iconElementRight={itemOnRight}
                         onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap}
-                        style={{position: 'absolute', top: 0}}>
+                        style={{position: 'fixed', top: 0}}>
 
                 </AppBar>
             </div>

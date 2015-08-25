@@ -60,14 +60,20 @@ App = React.createClass({
         return (
 
             <AppCanvas>
-                <TitleBar onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}/>
+                <TitleBar
+                          zDepth={0} onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}/>
+
+
                 {this.props.children}
+
+
                 <AppLeftNav ref="leftNav"/>
+
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>
-                        Hand crafted with love by the engineers at <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a>
-                        and our
-                        awesome <a style={styles.a} href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
+                        A simple example integrating React, Meteor, Material_UI. Created By Taichi Ho.
+                        Great thanks to <a style={styles.a} href="http://call-em-all.com">Call-Em-All</a> and their awesome <a style={styles.a}
+                                             href="https://github.com/callemall/material-ui/graphs/contributors">contributors</a>.
                     </p>
                 </FullWidthSection>
             </AppCanvas>
